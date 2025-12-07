@@ -21,6 +21,17 @@ router.get("/category/:category", async (req, res) => {
   }
 });
 
+router.get("/", async (req, res) => {
+  const { category } = req.query;
+
+  let filter = {};
+  if (category) filter.category = category;
+
+  const promises = await PromiseModel.find(filter);
+  res.json(promises);
+});
+
+
 
 // Add a new promise
 router.post("/", async (req, res) => {
