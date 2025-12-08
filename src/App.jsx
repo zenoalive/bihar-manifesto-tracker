@@ -8,7 +8,6 @@ import AdminLayout from "./pages/admin/AdminLayout"
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AddPromise from "./pages/admin/AddPromise";
 import EditPromise from "./pages/admin/EditPromise";
-import CategoryPage from "./pages/CategoryPage"
 
 
 
@@ -16,43 +15,44 @@ import CategoryPage from "./pages/CategoryPage"
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/promise/:id" element={<PromiseDetail />} />
-          <Route path="/categories" element={<Categories />} />
-          <Route path="/category/:name" element={<CategoryDetail />} />
-          {/* ADMIN ROUTES */}
-          <Route
-            path="/admin"
-            element={
-              <AdminLayout>
-                <AdminDashboard />
-              </AdminLayout>
-            }
-          />
+   <BrowserRouter>
+  <Layout>
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/promise/:id" element={<PromiseDetail />} />
+      <Route path="/categories" element={<Categories />} />
+      <Route path="/category/:category" element={<CategoryDetail />} />
 
-          <Route
-            path="/admin/add"
-            element={
-              <AdminLayout>
-                <AddPromise />
-              </AdminLayout>
-            }
-          />
-          <Route
-            path="/admin/edit/:id"
-            element={
-              <AdminLayout>
-                <EditPromise />
-              </AdminLayout>
-            }
-          />
-          <Route path="/category/:category" element={<CategoryPage />} />
+      {/* ADMIN ROUTES */}
+      <Route
+        path="/admin"
+        element={
+          <AdminLayout>
+            <AdminDashboard />
+          </AdminLayout>
+        }
+      />
 
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+      <Route
+        path="/admin/add"
+        element={
+          <AdminLayout>
+            <AddPromise />
+          </AdminLayout>
+        }
+      />
+
+      <Route
+        path="/admin/edit/:id"
+        element={
+          <AdminLayout>
+            <EditPromise />
+          </AdminLayout>
+        }
+      />
+    </Routes>
+  </Layout>
+</BrowserRouter>
+
   );
 }

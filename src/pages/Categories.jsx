@@ -30,6 +30,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { categoryImages } from "../data/categoryImages";
 
+
 export default function Categories() {
   const [categories, setCategories] = useState([]);
 

@@ -28,6 +28,8 @@ export default function Home() {
     setCategoriesData(cats);
   }, [promises]);
 
+
+
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
       <h1 className="text-3xl font-bold mb-6">NDA Manifesto Tracker  after elections</h1>

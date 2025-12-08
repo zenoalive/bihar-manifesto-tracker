@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../../api";
+import axios from "axios";
 
 const CATEGORIES = [
   "Jobs & Employment",
-  "Skill Development",
   "Women Empowerment",
-  "Social Justice / EBC Support",
+  "Social Justice",
   "Agriculture & Rural Development",
   "Infrastructure",
   "Industry & Investment",
@@ -16,31 +16,51 @@ const CATEGORIES = [
 ];
 export default function AddPromise() {
   const navigate = useNavigate();
+  const [image, setImage] = useState("");
+  const [sources, setSources] = useState("");
+
 
   const [form, setForm] = useState({
-    title: "",
-    description: "",
-    category: "",
-    progress: 0,
-    image: "",
-  });
+  title: "",
+  description: "",
+  category: "",
+  progress: 0,
+  image: "",
+  sources: "",
+});
+
 
   function handleChange(e) {
     setForm({ ...form, [e.target.name]: e.target.value });
   }
 
-  async function handleSubmit(e) {
-    e.preventDefault();
+ async function handleSubmit(e) {
+  e.preventDefault();
 
-    try {
-      await API.post("/promises", form);
-      alert("Promise added successfully!");
-      navigate("/admin");
-    } catch (err) {
-      console.error("Error adding promise:", err);
-      alert("Error adding promise");
-    }
+  try {
+    await axios.post("http://localhost:5000/api/promises", {
+      title: form.title,
+      description: form.description,
+      category: form.category,
+      progress: Number(form.progress),
+      image: form.image,
+      sources: form.sources
+        .split(",")
+        .map((s) => s.trim())
+        .filter(Boolean),
+      notes: []
+    });
+
+    alert("Promise added successfully!");
+    navigate("/admin");
+    
+  } catch (err) {
+    console.error("Error adding promise:", err);
+    alert("Error adding promise");
   }
+}
+
+
 
   return (
     <div className="max-w-3xl mx-auto py-10 px-4">
@@ -49,7 +69,7 @@ export default function AddPromise() {
       <form onSubmit={handleSubmit} className="space-y-6">
 
         {/* Title */}
-         <div>
+        <div>
           <label className="block font-semibold mb-1">Title</label>
           <input
             type="text"
@@ -89,19 +109,25 @@ export default function AddPromise() {
             required
           ></textarea>
         </div>
-
-        {/* Category */}
-        {/* <div>
-          <label className="block font-semibold mb-1">Category</label>
+        <div>
+          <label className="font-semibold">Image URL (optional)</label>
           <input
             type="text"
-            name="category"
-            value={form.category}
-            onChange={handleChange}
-            className="w-full border p-2 rounded"
-            required
+            className="border p-2 w-full rounded"
+            value={image}
+            onChange={(e) => setImage(e.target.value)}
           />
-        </div> */}
+        </div>
+
+        {/* Sources */}
+        <div>
+          <label className="font-semibold">Evidence Sources (comma separated)</label>
+          <textarea
+            className="border p-2 w-full rounded"
+            value={sources}
+            onChange={(e) => setSources(e.target.value)}
+          />
+        </div>
 
         {/* Progress */}
         <div>
