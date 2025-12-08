@@ -5,23 +5,13 @@ const PromiseSchema = new mongoose.Schema({
   description: String,
   category: String,
   progress: Number,
+  status: String,
+  
+  bannerImage: { type: String, default: "" },     // <— NEW
+  galleryImages: { type: [String], default: [] }, // <— NEW
+  sources: { type: [String], default: [] },       // <— ALREADY EXISTS?
+  notes: { type: [String], default: [] },         // <— NEW
 
-  image: { type: String, default: "" },
-
-  sources: {
-    type: [String],
-    default: [],
-  },
-
-  notes: {
-    type: [
-      {
-        text: String,
-        date: { type: Date, default: Date.now }
-      }
-    ],
-    default: [],
-  }
-});
+}, { timestamps: true });
 
 export default mongoose.model("Promise", PromiseSchema);

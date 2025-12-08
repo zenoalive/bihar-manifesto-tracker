@@ -7,7 +7,7 @@ import CategoryDetail from "./pages/CategoryDetail";
 import AdminLayout from "./pages/admin/AdminLayout"
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AddPromise from "./pages/admin/AddPromise";
-import EditPromise from "./pages/admin/EditPromise";
+import EditPromise from "./pages/admin/EditPromise"
 
 
 
