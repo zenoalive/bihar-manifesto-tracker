@@ -175,6 +175,15 @@ export default function PromiseDetail() {
           />
         </div>
       </div>
+      <div className="mb-4">
+        <span className="px-3 py-1 text-sm rounded-full
+    ${promise.status === 'completed' ? 'bg-green-200 text-green-700' :
+      promise.status === 'in-progress' ? 'bg-yellow-200 text-yellow-700' :
+      'bg-gray-200 text-gray-700'}">
+          {promise.status.toUpperCase()}
+        </span>
+      </div>
+
 
       {/* GALLERY IMAGES */}
       {promise.galleryImages && promise.galleryImages.length > 0 && (
@@ -195,24 +204,20 @@ export default function PromiseDetail() {
       )}
       {/* SOURCES */}
       {promise.sources && promise.sources.length > 0 && (
-        <div className="mb-10">
-          <h2 className="text-xl font-semibold mb-2">Sources</h2>
-          <ul className="list-disc pl-6 text-blue-700">
-            {promise.sources.map((src, index) => (
-              <li key={index}>
-                <a
-                  href={src}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  {src}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
+  <div className="mb-8">
+    <h2 className="text-xl font-semibold mb-2">Sources</h2>
+    <ul className="list-disc ml-6 text-blue-600">
+      {promise.sources.map((src, i) => (
+        <li key={i}>
+          <a href={src} target="_blank" className="underline">
+            {src}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
+
 
       {/* NOTES */}
       {promise.notes && promise.notes.length > 0 && (

@@ -118,6 +118,33 @@ export default function EditPromise() {
             />
           )}
         </div>
+        <div>
+          <label className="font-semibold">Status</label>
+          <select
+            name="status"
+            value={form.status}
+            onChange={handleChange}
+            className="w-full border p-2 rounded"
+          >
+            <option value="pending">Pending</option>
+            <option value="in-progress">In Progress</option>
+            <option value="completed">Completed</option>
+          </select>
+        </div>
+        <div>
+          <label className="font-semibold">Progress: {form.progress}%</label>
+          <input
+            type="range"
+            name="progress"
+            min="0"
+            max="100"
+            value={form.progress}
+            onChange={handleChange}
+            className="w-full"
+          />
+        </div>
+
+
 
         {/* Gallery Images Upload */}
         <div className="mt-4">
@@ -159,7 +186,6 @@ export default function EditPromise() {
         </div>
 
 
-        {/* Sources */}
         <div>
           <label className="font-semibold">Sources (comma-separated URLs)</label>
           <input
@@ -168,10 +194,7 @@ export default function EditPromise() {
             onChange={(e) =>
               setForm({
                 ...form,
-                sources: e.target.value
-                  .split(",")
-                  .map((x) => x.trim())
-                  .filter(Boolean),
+                sources: e.target.value.split(",").map(s => s.trim())
               })
             }
             className="w-full border p-2 rounded"
