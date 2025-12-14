@@ -16,14 +16,23 @@ const PromiseSchema = new mongoose.Schema(
     bannerImage: { type: String, default: "" },
     galleryImages: { type: [String], default: [] },
 
-    sources: { type: [String], default: [] },
+   sources: [
+  {
+    label: String,
+    url: String
+  }
+]
+,
 
     notes: [
-      {
-        text: String,
-        date: { type: Date, default: Date.now }
-      }
-    ]
+  {
+    text: String,
+    date: Date
+  }
+]
+
+
+
   },
   { timestamps: true }
 );

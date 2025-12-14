@@ -1,119 +1,3 @@
-// import { useEffect, useState } from "react";
-// import { useParams, Link } from "react-router-dom";
-// import axios from "axios";
-// import ProgressBar from "../components/ProgressBar";
-
-// export default function PromiseDetail() {
-//   const { id } = useParams();
-//   const [promise, setPromise] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   useEffect(() => {
-//     axios
-//       .get(`http://localhost:5000/api/promises/${id}`)
-//       .then((res) => {
-//         setPromise(res.data);
-//         setLoading(false);
-//       })
-//       .catch(() => setLoading(false));
-//   }, [id]);
-
-//   if (loading) return <div className="p-6 text-center">Loading...</div>;
-
-//   if (!promise) {
-//     return (
-//       <div className="p-4 text-center text-red-500">
-//         Promise not found.
-//         <div>
-//           <Link className="text-blue-600 underline" to="/">Go back</Link>
-//         </div>
-//       </div>
-//     );
-//   }
-
-//   return (
-//     <div className="max-w-4xl mx-auto p-6">
-//       {/* Back Button */}
-//       <Link className="text-blue-600 underline" to={`/category/${encodeURIComponent(promise.category)}`}>
-//         ← Back to {promise.category}
-//       </Link>
-
-//       {/* Title */}
-//       <h1 className="text-3xl font-bold mt-3 mb-4">{promise.title}</h1>
-
-//       {/* Category Label */}
-//       <div className="text-gray-600 mb-4">
-//         <strong>Category:</strong> {promise.category}
-//       </div>
-
-//       {/* Image Banner */}
-//       {promise.image && (
-//         <div className="w-full mb-6">
-//           <img
-//             src={promise.image}
-//             alt="Promise visual"
-//             className="w-full h-56 object-cover rounded-lg shadow"
-//           />
-//         </div>
-//       )}
-
-//       {/* Progress */}
-//       <div className="my-6">
-//         <ProgressBar percent={promise.progress} />
-//         <div className="text-sm text-gray-700 mt-1">
-//           {promise.progress}% completed
-//         </div>
-//       </div>
-
-//       {/* Description */}
-//       <p className="text-gray-800 leading-relaxed text-lg mb-8">
-//         {promise.description}
-//       </p>
-
-//       {/* Evidence Sources */}
-//       <div className="mt-10">
-//         <h2 className="text-xl font-semibold mb-3">Evidence Sources</h2>
-
-//         {promise.sources && promise.sources.length > 0 ? (
-//           <ul className="list-disc ml-6 space-y-2">
-//             {promise.sources.map((src, idx) => (
-//               <li key={idx}>
-//                 <a
-//                   href={src}
-//                   target="_blank"
-//                   rel="noopener noreferrer"
-//                   className="text-blue-600 underline"
-//                 >
-//                   {src}
-//                 </a>
-//               </li>
-//             ))}
-//           </ul>
-//         ) : (
-//           <p className="text-gray-500">No sources provided.</p>
-//         )}
-//       </div>
-
-//       {/* Notes */}
-//       <div className="mt-12">
-//         <h2 className="text-xl font-semibold mb-3">Progress Notes</h2>
-
-//         {promise.notes && promise.notes.length > 0 ? (
-//           <div className="space-y-4">
-//             {promise.notes.map((note, idx) => (
-//               <div key={idx} className="bg-gray-100 p-4 rounded-lg shadow">
-//                 <div className="text-sm text-gray-500">{note.date}</div>
-//                 <div className="text-gray-800 mt-1">{note.text}</div>
-//               </div>
-//             ))}
-//           </div>
-//         ) : (
-//           <p className="text-gray-500">No notes added yet.</p>
-//         )}
-//       </div>
-//     </div>
-//   );
-// }
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../api";
@@ -204,19 +88,25 @@ export default function PromiseDetail() {
       )}
       {/* SOURCES */}
       {promise.sources && promise.sources.length > 0 && (
-  <div className="mb-8">
-    <h2 className="text-xl font-semibold mb-2">Sources</h2>
-    <ul className="list-disc ml-6 text-blue-600">
-      {promise.sources.map((src, i) => (
-        <li key={i}>
-          <a href={src} target="_blank" className="underline">
-            {src}
-          </a>
-        </li>
-      ))}
-    </ul>
-  </div>
-)}
+        <div className="mb-8">
+          <h2 className="text-xl font-semibold mb-2">Sources</h2>
+          <ul className="list-disc ml-6 space-y-1">
+            {promise.sources.map((src, i) => (
+              <li key={i}>
+                <a
+                  href={src.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline text-blue-600"
+                >
+                  {src.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+        </div>
+      )}
 
 
       {/* NOTES */}
@@ -224,14 +114,15 @@ export default function PromiseDetail() {
         <div className="mb-10">
           <h2 className="text-xl font-semibold mb-2">Notes</h2>
           <div className="space-y-2">
-            {promise.notes.map((note, index) => (
-              <div
-                key={index}
-                className="p-3 bg-gray-100 rounded-lg border text-gray-700"
-              >
-                {note}
-              </div>
+            {promise.notes.map((n, i) => (
+              <li key={i}>
+                <span className="font-semibold">{n.text}</span>
+                <span className="text-xs text-gray-500 ml-2">
+                  {new Date(n.date).toLocaleDateString()}
+                </span>
+              </li>
             ))}
+
           </div>
         </div>
       )}
