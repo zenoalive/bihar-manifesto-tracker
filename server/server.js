@@ -12,6 +12,9 @@ app.use(express.json());
 connectDB();
 
 // Routes
+app.get("/", (req, res) => {
+  res.send("Bihar Manifesto Tracker API is running");
+});
 app.use("/api/promises", promiseRoutes);
 app.use("/uploads", express.static("uploads"));
 
