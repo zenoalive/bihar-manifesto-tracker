@@ -12,15 +12,15 @@ app.use(express.json());
 connectDB();
 
 // Routes
-app.get("/", (req, res) => {
-  res.send("Bihar Manifesto Tracker API is running");
-});
+
 app.use("/api/promises", promiseRoutes);
 app.use("/uploads", express.static("uploads"));
 
 
 app.use("/api/upload", uploadRoutes);
 
-
+app.get("/", (req, res) => {
+  res.send("Bihar Manifesto Tracker API is running");
+});
 // Start server
 app.listen(5000, () => console.log("Server running on http://localhost:5000"));
