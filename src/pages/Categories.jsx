@@ -35,7 +35,7 @@ export default function Categories() {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/promises")
+    axios.get(`${process.env.VITE_API_URL}/api/promises`)
       .then((res) => {
         const data = res.data;
 

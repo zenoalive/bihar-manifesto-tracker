@@ -38,7 +38,7 @@ export default function AddPromise() {
   e.preventDefault();
 
   try {
-    await axios.post("http://localhost:5000/api/promises", {
+    await axios.post(`${process.env.VITE_API_URL}/api/promises`, {
       title: form.title,
       description: form.description,
       category: form.category,

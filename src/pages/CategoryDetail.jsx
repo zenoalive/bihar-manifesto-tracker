@@ -86,7 +86,7 @@ export default function CategoryDetail() {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/promises?category=${encodeURIComponent(
+          `${process.env.VITE_API_URL}/api/promises?category=${encodeURIComponent(
             category
           )}`
         );
