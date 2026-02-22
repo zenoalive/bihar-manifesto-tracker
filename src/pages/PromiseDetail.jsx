@@ -113,7 +113,7 @@ export default function PromiseDetail() {
       {promise.notes && promise.notes.length > 0 && (
         <div className="mb-10">
           <h2 className="text-xl font-semibold mb-2">Notes</h2>
-          <div className="space-y-2">
+          <ul className="list-disc ml-6 space-y-1">
             {promise.notes.map((n, i) => (
               <li key={i}>
                 <span className="font-semibold">{n.text}</span>
@@ -122,9 +122,9 @@ export default function PromiseDetail() {
                 </span>
               </li>
             ))}
-
+            </ul>
           </div>
-        </div>
+        
       )}
     </div>
   );
