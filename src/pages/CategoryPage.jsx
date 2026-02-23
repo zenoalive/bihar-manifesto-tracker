@@ -11,7 +11,7 @@ export default function CategoryPage() {
 
   useEffect(() => {
     const cat = decodeURIComponent(category);
-    API.get(`/promises/category/${encodeURIComponent(cat)}`).then((res) => {
+    API.get(`/api/promises/category/${encodeURIComponent(cat)}`).then((res) => {
       const data = res.data;
       setPromises(data);
 

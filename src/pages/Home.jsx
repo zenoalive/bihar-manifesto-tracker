@@ -8,7 +8,7 @@ export default function Home() {
   const [categoriesData, setCategoriesData] = useState([]);
 
   useEffect(() => {
-    API.get("/promises").then((res) => setPromises(res.data)).catch(console.error);
+    API.get("/api/promises").then((res) => setPromises(res.data)).catch(console.error);
   }, []);
 
   useEffect(() => {

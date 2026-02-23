@@ -29,7 +29,7 @@ export default function EditPromise() {
   // LOAD PROMISE
   // ------------------------------------------------------
   useEffect(() => {
-    API.get(`/promises/${id}`)
+    API.get(`/api/promises/${id}`)
       .then((res) => {
         const p = res.data;
 
