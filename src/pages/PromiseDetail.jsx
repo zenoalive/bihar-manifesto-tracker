@@ -32,7 +32,7 @@ export default function PromiseDetail() {
       {promise.bannerImage && (
         <div className="mb-6">
           <img
-            src={`${process.env.VITE_API_URL}${promise.bannerImage}`}
+            src={`${import.meta.env.VITE_API_URL}${promise.bannerImage}`}
             alt="Promise banner"
             className="w-full h-64 object-cover rounded-xl shadow"
           />
@@ -78,7 +78,7 @@ export default function PromiseDetail() {
             {promise.galleryImages.map((img, index) => (
               <img
                 key={index}
-                src={`${process.env.VITE_API_URL}${img}`}
+                src={`${import.meta.env.VITE_API_URL}${img}`}
                 alt={`Promise ${index}`}
                 className="rounded-lg shadow object-cover w-full h-40"
               />

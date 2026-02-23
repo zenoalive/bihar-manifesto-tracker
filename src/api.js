@@ -5,6 +5,6 @@ import axios from "axios";
 // });
 console.log("API URL:", import.meta.env.VITE_API_URL);
 const API = axios.create({
-  baseURL: `${process.env.VITE_API_URL}/api/promises`, // your backend
+  baseURL: `${import.meta.env.VITE_API_URL}/api/promises`, // your backend
 });
 export default API;
