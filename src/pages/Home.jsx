@@ -32,7 +32,7 @@ export default function Home() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold mb-6">NDA Manifesto Tracker  after election 2025</h1>
+      <h1 className="text-3xl font-bold mb-6">NDA Manifesto Tracker  after election 2025 new</h1>
       <p className="text-gray-600 mb-10">Click a category to see details, promises and evidence.</p>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
