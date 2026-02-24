@@ -10,7 +10,7 @@ export default function PromiseDetail() {
   useEffect(() => {
     async function fetchPromise() {
       try {
-        const res = await API.get(`/promises/${id}`);
+        const res = await API.get(`/api/promises/${id}`);
         setPromise(res.data);
       } catch (err) {
         console.error("Error fetching promise:", err);
