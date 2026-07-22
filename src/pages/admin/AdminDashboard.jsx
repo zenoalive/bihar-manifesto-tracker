@@ -9,7 +9,7 @@ export default function AdminDashboard() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await API.get("/promises");
+        const res = await API.get("/api/promises");
         setPromises(res.data);
       } catch (err) {
         console.error("Error loading admin data:", err);
@@ -23,7 +23,7 @@ export default function AdminDashboard() {
     if (!confirm("Are you sure you want to delete this?")) return;
 
     try{
-      await API.delete(`/promises/${id}`);
+      await API.delete(`/api/promises/${id}`);
       setPromises(promises.filter((p) => p._id !== id));
     } catch (err) {
       console.error("Delete failed:", err);
