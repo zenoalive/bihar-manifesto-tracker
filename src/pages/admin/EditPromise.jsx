@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import API from "../../api";
 
-const API_BASE = import.meta.env.VITE_API_URL; // http://localhost:5000
-
+const API_BASE = import.meta.env.VITE_API_URL; 
 export default function EditPromise() {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -102,7 +101,7 @@ export default function EditPromise() {
     };
 
     try {
-      await API.put(`/promises/${id}`, payload);
+      await API.put(`/api/promises/${id}`, payload);
       alert("Promise updated!");
       navigate("/admin");
     } catch (err) {
@@ -188,7 +187,7 @@ export default function EditPromise() {
               const fd = new FormData();
               fd.append("image", file);
 
-              const res = await API.post("/upload/single", fd, {
+              const res = await API.post("/api/upload/single", fd, {
                 headers: { "Content-Type": "multipart/form-data" },
               });
 
@@ -236,7 +235,7 @@ export default function EditPromise() {
               const fd = new FormData();
               Array.from(files).forEach((f) => fd.append("images", f));
 
-              const res = await API.post("/upload/multiple", fd, {
+              const res = await API.post("/api/upload/multiple", fd, {
                 headers: { "Content-Type": "multipart/form-data" },
               });
 
