@@ -32,7 +32,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-bold mb-6">Admin Panel</h1>
+      <h1 className="text-3xl font-bold mb-6">Admin Panels</h1>
 
       <Link
         to="/admin/add"
